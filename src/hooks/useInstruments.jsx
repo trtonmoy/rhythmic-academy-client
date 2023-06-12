@@ -6,7 +6,7 @@ const useInstruments = () => {
   //   const { user, loading } = useAuth();
   // const token = localStorage.getItem('access-token');
   const [axiosSecure] = useAxiosSecure();
-  const { refetch, data: cart = [] } = useQuery({
+  const { refetch, data: instruments = [] } = useQuery({
     queryKey: ["carts"],
     // enabled: !loading,
     queryFn: async () => {
@@ -16,7 +16,7 @@ const useInstruments = () => {
     },
   });
 
-  return [cart, refetch];
+  return [instruments, refetch];
 };
 
 export default useInstruments;
