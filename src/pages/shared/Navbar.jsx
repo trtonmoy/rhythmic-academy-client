@@ -1,18 +1,31 @@
 import { Container } from "postcss";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const menuOptions = (
     <>
       <li>
-        <a>Item 1</a>
+        <Link> Home </Link>
+      </li>
+      <li>
+        <Link> Instructors </Link>
+      </li>
+      <li>
+        <Link> Classes </Link>
+      </li>
+      <li className="w-10 rounded-full">
+        <img src="" alt="" />
+      </li>
+      <li>
+        <Link> Sign Up </Link>
       </li>
     </>
   );
 
   return (
     <nav>
-      <div className="navbar fixed z-10 bg-base-100">
+      <div className="navbar fixed z-10 shadow-xl bg-purple-50">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -38,10 +51,17 @@ const Navbar = () => {
               {menuOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost  normal-case text-xl">Rhythmic</a>
+          <Link
+            to="/"
+            className="btn btn-ghost text-purple-950 hover:bg-purple-200 normal-case text-xl"
+          >
+            Rhythmic
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{menuOptions}</ul>
+          <ul className="menu font-medium text-purple-950 text-lg menu-horizontal px-1">
+            {menuOptions}
+          </ul>
         </div>
       </div>
     </nav>
