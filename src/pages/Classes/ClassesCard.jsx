@@ -14,7 +14,7 @@ const ClassesCard = ({ instrument }) => {
 
   const handleAdmission = (element) => {
     Swal.fire({
-      position: "top-center",
+      position: "center",
       icon: "success",
       title: `Admission has taken in ${instrument.name}`,
       showConfirmButton: false,

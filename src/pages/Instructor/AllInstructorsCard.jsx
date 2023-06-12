@@ -5,7 +5,7 @@ const AllInstructorsCard = ({ instructor }) => {
   const { name, email, skill, experience, _id, bio, image } = instructor;
   return (
     <div className="">
-      <div className="card lg:card-side bg-base-100 shadow-xl h-[450px]">
+      <div className="card lg:card-side bg-base-100 shadow-xl h-[500px]">
         <figure className="w-[50%] p-2">
           <img src={image} alt="Album" />
         </figure>

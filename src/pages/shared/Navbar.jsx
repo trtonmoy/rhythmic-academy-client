@@ -1,25 +1,49 @@
 import { Container } from "postcss";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut();
+    navigate("/login");
+  };
+
   const menuOptions = (
     <>
       <li>
-        <Link> Home </Link>
+        <Link to="/"> Home </Link>
       </li>
       <li>
-        <Link> Instructors </Link>
+        <Link to="/instructors"> Instructors </Link>
       </li>
       <li>
-        <Link> Classes </Link>
+        <Link to="/classes"> Classes </Link>
       </li>
-      <li className="w-10 rounded-full">
-        <img src="" alt="" />
-      </li>
-      <li>
-        <Link> Sign Up </Link>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <img
+              style={{ borderRadius: "50%" }}
+              className="w-16"
+              src={user?.photoURL}
+              alt="PP"
+            />
+          </li>
+          <li>
+            <button onClick={handleLogOut}> Log Out</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/signup"> Sign Up </Link>
+          </li>
+        </>
+      )}
     </>
   );
 
