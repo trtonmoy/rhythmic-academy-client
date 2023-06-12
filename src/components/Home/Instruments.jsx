@@ -2,10 +2,11 @@ import React from "react";
 import useInstruments from "../../hooks/useInstruments";
 import InstrumentCard from "./InstrumentCard";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import { Link } from "react-router-dom";
 
 const Instruments = () => {
   const [instruments] = useInstruments();
-  console.log(instruments);
+  // console.log(instruments);
   return (
     <section>
       <SectionTitle
@@ -18,6 +19,13 @@ const Instruments = () => {
         {instruments.map((item) => (
           <InstrumentCard key={item._id} item={item}></InstrumentCard>
         ))}
+      </div>
+      <div className="text-center">
+        <Link >
+          <button className="btn text-xl font-medium text-white bg-purple-500 hover:bg-purple-800 hover:font-semibold px-12 my-8 py-2 rounded-xl btn-outline-secondary">
+            Take Admission
+          </button>
+        </Link>
       </div>
     </section>
   );

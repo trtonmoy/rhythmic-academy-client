@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const InstructorCard = ({ instructor }) => {
-  const { name, image, skill } = instructor;
+  const { _id, name, image, skill } = instructor;
 
   return (
     <div className="my-5">
@@ -19,13 +19,7 @@ const InstructorCard = ({ instructor }) => {
               skill.map((item, idx) => <span key={idx}> {item} , </span>)}
           </p>
         </div>
-        <div className="text-center">
-          <Link>
-            <button className="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded-full text-sm transition duration-300">
-              Know More
-            </button>
-          </Link>
-        </div>
+        
       </div>
     </div>
   );
