@@ -21,7 +21,7 @@ const Instruments = () => {
         ))}
       </div>
       <div className="text-center">
-        <Link >
+        <Link to="/classes">
           <button className="btn text-xl font-medium text-white bg-purple-500 hover:bg-purple-800 hover:font-semibold px-12 my-8 py-2 rounded-xl btn-outline-secondary">
             Take Admission
           </button>
