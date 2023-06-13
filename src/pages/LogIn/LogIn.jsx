@@ -22,7 +22,11 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        const savedUser = { name: user.displayName, email: user.email };
+        const savedUser = {
+          name: user.displayName,
+          email: user.email,
+          role: "user",
+        };
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
@@ -31,17 +35,15 @@ const LogIn = () => {
           body: JSON.stringify(savedUser),
         })
           .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              navigate(from, { replace: true });
-              Swal.fire({
-                position: "top",
-                icon: "success",
-                title: "You have sign up successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
+          .then(() => {
+            navigate("/");
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "You have logged in successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
           });
       })
       .catch((err) => {

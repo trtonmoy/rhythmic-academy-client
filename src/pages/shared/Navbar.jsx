@@ -28,18 +28,22 @@ const Navbar = () => {
         <Link to="/instructors"> Instructors </Link>
       </li>
       <li>
-        <Link to="/classes"> Classes </Link>
+        <Link to="/classes"> Courses </Link>
       </li>
       {user ? (
         <>
+          <li>
+            <Link to="/dashboard"> Dashboard </Link>
+          </li>
           <li>
             <img
               style={{ borderRadius: "50%" }}
               className="w-16"
               src={user?.photoURL}
-              alt="PP"
+              alt=""
             />
           </li>
+
           <li>
             <button onClick={handleLogOut}> Log Out</button>
           </li>
@@ -55,9 +59,9 @@ const Navbar = () => {
   );
 
   return (
-    <nav>
-      <div className="navbar fixed z-10 shadow-xl bg-purple-50">
-        <div className="navbar-start">
+    <nav className="">
+      <div className="navbar max-w-7xl mx-auto fixed z-10 shadow-xl bg-purple-50">
+        <div className="w-[35%]">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
@@ -79,6 +83,7 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
+              {/* responsive navbar */}
               {menuOptions}
             </ul>
           </div>
@@ -88,15 +93,17 @@ const Navbar = () => {
           >
             Rhythmic
           </Link>
-          <button className="btn">
-            <IoSchoolOutline className="" />
-            <div className="badge badge-secondary">
-              +{subjects?.length || 0}
-            </div>
-          </button>
+          <Link to="/dashboard/selected">
+            <button className="btn ml-2">
+              <IoSchoolOutline className="" />
+              <div className="badge badge-secondary">
+                +{subjects?.length || 0}
+              </div>
+            </button>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu font-medium text-purple-950 text-lg menu-horizontal px-1">
+          <ul className="menu font-medium text-purple-950 text-base menu-horizontal px-1">
             {menuOptions}
           </ul>
         </div>
