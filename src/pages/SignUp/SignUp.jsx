@@ -20,23 +20,40 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         reset();
-        console.log("user", user);
+        // console.log("user", user);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            console.log("user profile updated");
+            const savedUser = { name: data.name, email: data.email };
+
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(savedUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  logOut()
+                    .then(() => {})
+                    .catch((err) => {
+                      console.log(err.message);
+                    });
+                  navigate("/login");
+                  Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "You have sign up successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }
+              });
           })
           .catch((error) => {
             console.log(error.message);
           });
-        logOut();
-        navigate("/login");
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "You have sign up successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
       })
       .catch((err) => {
         console.error(err.message);
@@ -170,23 +187,28 @@ const SignUp = () => {
                   </p>
                 )}
               </div>
+              <div>
+                <label
+                  htmlFor="photoURL"
+                  className="text-gray-700 font-medium mb-2 block"
+                >
+                  Photo URL
+                </label>
+                <input
+                  type="text"
+                  name="photoURL"
+                  id="photo"
+                  placeholder="Provide a photo URL here..."
+                  className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:ring-purple-500"
+                />
+              </div>
               <button
                 type="submit"
                 className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 Sign Up
               </button>
-              <div className="text-center mt-4">
-                <span className="text-gray-600">Or</span>
-              </div>
-              <button className="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 rounded-md w-full flex items-center justify-center border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                <span className="text-purple-600 mr-2">
-                  Sign In with Google
-                </span>
-                <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM19.44 9.5H12V14.5H15.54C15.3 15.75 14.34 16.79 13.08 17.05V19.5H16.61C19.23 18.06 20.5 15.24 19.91 12C19.5 9.59 17.41 7.5 15 7.5H19.44V9.5ZM9.47 14.5C7.39 14.5 5.7 12.81 5.7 10.7C5.7 9.05 6.79 7.61 8.36 7.08V4.64C5.1 5.37 3 7.91 3 10.7C3 14.08 5.92 17 9.3 17C11.68 17 13.63 15.62 14.19 13.47H11.75V11.03H15.89C15.74 11.78 15.23 12.38 14.51 12.63C15.26 12.17 15.75 11.39 15.75 10.5C15.75 9.11 14.61 8 13.22 8H13.19L11.75 8.03V5.58H14.19C16.84 5.58 18.94 7.68 18.94 10.33C18.94 12.26 17.75 13.95 15.94 14.6C15.73 14.66 15.5 14.7 15.26 14.7H9.47V14.5Z" />
-                </svg>
-              </button>
+
               <div className="text-center mt-4">
                 <span className="text-gray-600">
                   Already have an account?{" "}

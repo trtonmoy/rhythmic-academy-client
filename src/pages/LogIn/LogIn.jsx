@@ -1,19 +1,61 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const LogIn = () => {
-  const { googleSignIn, setUser } = useContext(AuthContext);
+  const { googleSignIn, setUser, logIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log(user);
+        const savedUser = { name: user.displayName, email: user.email };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              navigate(from, { replace: true });
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "You have sign up successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+    logIn(data.email, data.password)
+      .then((result) => {
+        setUser(result.user);
         navigate("/");
+        reset();
         Swal.fire({
           position: "top",
           icon: "success",
@@ -23,31 +65,35 @@ const LogIn = () => {
         });
       })
       .catch((err) => {
-        console.error(err.message);
+        console.log(err.message);
       });
   };
-
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen bg-purple-400">
         <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
           <h2 className="text-2xl text-center mb-6">Login</h2>
 
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* Username Field */}
             <div className="mb-4">
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-800"
               >
                 Email
               </label>
               <input
                 type="email"
+                {...register("email", { required: true })}
                 id="username"
+                name="email"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your username"
               />
+              {errors.email && (
+                <span className="text-red-600 text-sm">Email is required</span>
+              )}
             </div>
 
             {/* Password Field */}
@@ -59,11 +105,18 @@ const LogIn = () => {
                 Password
               </label>
               <input
+                {...register("password", { required: true })}
                 type="password"
+                name="password"
                 id="password"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter your password"
               />
+              {errors.password && (
+                <span className="text-red-600 text-sm">
+                  Password is required
+                </span>
+              )}
             </div>
 
             {/* Login Button */}

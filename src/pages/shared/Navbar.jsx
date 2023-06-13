@@ -2,13 +2,20 @@ import { Container } from "postcss";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { IoSchoolOutline } from "react-icons/io5";
+import useAdmission from "../../hooks/useAdmission";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [subjects] = useAdmission();
 
   const handleLogOut = () => {
-    logOut();
+    logOut()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err.message);
+      });
     navigate("/login");
   };
 
@@ -81,6 +88,12 @@ const Navbar = () => {
           >
             Rhythmic
           </Link>
+          <button className="btn">
+            <IoSchoolOutline className="" />
+            <div className="badge badge-secondary">
+              +{subjects?.length || 0}
+            </div>
+          </button>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu font-medium text-purple-950 text-lg menu-horizontal px-1">

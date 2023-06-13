@@ -3,11 +3,12 @@ import Slider from "../../components/Slider";
 import Banner from "../../components/Home/Banner";
 import Instruments from "../../components/Home/Instruments";
 import Instructors from "../../components/Home/Instructors";
+import Hero from "../../components/Home/Hero";
 
 const HomePage = () => {
   return (
     <section>
-      <h4>home</h4>
+      {/* <Hero></Hero> */}
       <div className="divider"></div>
       <Slider></Slider>
       <div className="divider"></div>

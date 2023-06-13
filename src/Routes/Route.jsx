@@ -30,14 +30,14 @@ export const router = createBrowserRouter([
         path: "/classes",
         element: <Classes></Classes>,
       },
+      {
+        path: "/signup",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "/login",
+        element: <LogIn></LogIn>,
+      },
     ],
-  },
-  {
-    path: "/signup",
-    element: <SignUp></SignUp>,
-  },
-  {
-    path: "/login",
-    element: <LogIn></LogIn>,
   },
 ]);
