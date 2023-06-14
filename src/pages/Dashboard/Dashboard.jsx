@@ -4,8 +4,12 @@ import { BiHome } from "react-icons/bi";
 import { CgPiano } from "react-icons/cg";
 import { IoMdPeople, IoMdAlbums } from "react-icons/io";
 import { HiBadgeCheck } from "react-icons/hi";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import useAdmission from "../../hooks/useAdmission";
+import { IoSchoolOutline } from "react-icons/io5";
 
 const Dashboard = () => {
+  const [subjects] = useAdmission();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -13,9 +17,14 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
           <div>
-            <h1>Welcome to dashboard</h1>
+            <SectionTitle
+              heading={"welcome to dashboard"}
+              subHeading={"Do Your Activities Here"}
+            ></SectionTitle>
           </div>
-          <Outlet></Outlet>
+          <div className="mb-12 w-full pl-4">
+            <Outlet></Outlet>
+          </div>
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
@@ -48,11 +57,32 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/selected">
                 {" "}
-                <IoMdAlbums></IoMdAlbums> Selected Classes
+                <IoMdAlbums></IoMdAlbums> Selected Classes{" "}
+                <button className="btn ml-2">
+                  <IoSchoolOutline className="" />
+                  <div className="badge badge-secondary">
+                    +{subjects?.length || 0}
+                  </div>
+                </button>
               </Link>
             </li>
             <li>
-              <Link to="/dashboard/enrolled"> <HiBadgeCheck></HiBadgeCheck> Enrolled Classes</Link>
+              <Link to="/dashboard/enrolled">
+                {" "}
+                <HiBadgeCheck></HiBadgeCheck> Enrolled Classes
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/addcourse">
+                {" "}
+                <HiBadgeCheck></HiBadgeCheck> Add a Course
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/mycourses">
+                {" "}
+                <HiBadgeCheck></HiBadgeCheck> My Courses
+              </Link>
             </li>
           </ul>
         </div>
