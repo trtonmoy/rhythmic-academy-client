@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 
 const Instruments = () => {
   const [instruments] = useInstruments();
+  const showInstruments = instruments.filter(
+    (instrument) => instrument.role !== "pending"
+  );
   // console.log(instruments);
   return (
     <section>
@@ -16,7 +19,7 @@ const Instruments = () => {
         }
       ></SectionTitle>
       <div className="xs:px-2 md:grid md:grid-cols-4 gap-2">
-        {instruments.map((item) => (
+        {showInstruments.map((item) => (
           <InstrumentCard key={item._id} item={item}></InstrumentCard>
         ))}
       </div>

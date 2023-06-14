@@ -12,7 +12,7 @@ const AddCourse = () => {
   const { handleSubmit, reset, register } = useForm();
 
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
-  console.log(img_hosting_token, img_hosting_url);
+  // console.log(img_hosting_token, img_hosting_url);
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -42,6 +42,10 @@ const AddCourse = () => {
             image: imgURL,
             available_seats,
             instructor_name,
+            role: 'pending',
+            enrolled_studs: 0,
+            feedback: '',
+
           };
           console.log(newItem);
           axiosSecure.post("/instruments", newItem).then((data) => {

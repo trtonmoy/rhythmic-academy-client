@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import Pay from "../pages/Dashboard/Pay/Pay";
 import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import MyCourses from "../pages/Dashboard/MyCourses/MyCourses";
+import Feedback from "../pages/Dashboard/Feedback/Feedback";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/mycourses",
         element: <MyCourses></MyCourses>,
+      },
+      {
+        path: "/dashboard/feedback",
+        element: <Feedback></Feedback>,
       },
     ],
   },
