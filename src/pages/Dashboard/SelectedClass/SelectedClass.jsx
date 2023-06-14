@@ -8,8 +8,9 @@ import useInstructors from "../../../hooks/useInstructors";
 import { Link } from "react-router-dom";
 
 const SelectedClass = () => {
-  const [subjects] = useAdmission();
-  const [, refetch] = useInstructors();
+  const [subjects, refetch] = useAdmission();
+  // const [, refetch] = useInstructors();
+
   const [AxiosSecure] = useAxiosSecure();
 
   const handleDelete = (subject) => {

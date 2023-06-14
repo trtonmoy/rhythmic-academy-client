@@ -14,6 +14,8 @@ import Pay from "../pages/Dashboard/Pay/Pay";
 import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import MyCourses from "../pages/Dashboard/MyCourses/MyCourses";
 import Feedback from "../pages/Dashboard/Feedback/Feedback";
+import ManageCourses from "../pages/Dashboard/ManageCourses/ManageCourses";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +85,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/feedback",
         element: <Feedback></Feedback>,
+      },
+      {
+        path: "/dashboard/managecourses",
+        element: <ManageCourses></ManageCourses>,
+      },
+      {
+        path: "/dashboard/manageusers",
+        element: <ManageUsers></ManageUsers>,
       },
     ],
   },

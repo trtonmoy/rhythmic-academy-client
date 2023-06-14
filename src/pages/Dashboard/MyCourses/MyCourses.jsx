@@ -5,7 +5,7 @@ import CourseCard from "./CourseCard";
 const MyCourses = () => {
   const [instruments] = useInstruments();
   const myCourses = instruments.filter((instrument) => instrument.role);
-  console.log(myCourses);
+  // console.log(myCourses);
   return (
     <div className="w-full">
       <div>
