@@ -7,6 +7,12 @@ import { HiBadgeCheck } from "react-icons/hi";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import useAdmission from "../../hooks/useAdmission";
 import { IoSchoolOutline } from "react-icons/io5";
+import { LuBookPlus } from "react-icons/lu";
+import {
+  MdManageAccounts,
+  MdOutlineLibraryBooks,
+  MdOutlineManageHistory,
+} from "react-icons/md";
 
 const Dashboard = () => {
   const [subjects] = useAdmission();
@@ -69,22 +75,22 @@ const Dashboard = () => {
             </li>
             <li>
               <Link to="/dashboard/addcourse">
-                <HiBadgeCheck></HiBadgeCheck> Add a Course
+                <LuBookPlus></LuBookPlus> Add a Course
               </Link>
             </li>
             <li>
               <Link to="/dashboard/mycourses">
-                <HiBadgeCheck></HiBadgeCheck> My Courses
+                <MdOutlineLibraryBooks></MdOutlineLibraryBooks> My Courses
               </Link>
             </li>
             <li>
               <Link to="/dashboard/managecourses">
-                <HiBadgeCheck></HiBadgeCheck> Manage Courses
+                <MdOutlineManageHistory></MdOutlineManageHistory> Manage Courses
               </Link>
             </li>
             <li>
               <Link to="/dashboard/manageusers">
-                <HiBadgeCheck></HiBadgeCheck> Manage Users
+                <MdManageAccounts></MdManageAccounts> Manage Users
               </Link>
             </li>
           </ul>

@@ -9,9 +9,9 @@ const MyCourses = () => {
   return (
     <div className="w-full">
       <div>
-        {
-          myCourses.map(course => <CourseCard key={course._id} course={course}></CourseCard> )
-        }
+        {myCourses.map((course) => (
+          <CourseCard key={course._id} course={course}></CourseCard>
+        ))}
       </div>
     </div>
   );

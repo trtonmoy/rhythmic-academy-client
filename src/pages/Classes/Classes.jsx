@@ -5,7 +5,8 @@ import ClassesCard from "./ClassesCard";
 const Classes = () => {
   const [instruments] = useInstruments();
   const showInstruments = instruments.filter(
-    (instrument) => instrument.role !== "pending"
+    (instrument) =>
+      instrument.role !== "pending" && instrument.role !== "Denied"
   );
   return (
     <section>

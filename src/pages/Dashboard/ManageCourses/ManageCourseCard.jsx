@@ -43,6 +43,22 @@ const ManageCourseCard = ({
       });
   };
 
+  const handleApprove = (id) => {
+    fetch(`http://localhost:5000/instruments/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ role: "Approved" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire("Updated!", "Your data has been updated.", "success");
+        }
+      });
+  };
+
   return (
     <div className="flex items-center justify-between bg-orange-200 p-2 rounded-sm my-2">
       <figure>
@@ -53,31 +69,32 @@ const ManageCourseCard = ({
         />
       </figure>
       <div>
-        <h2>
-          Name : <br /> {name}
-        </h2>
+        <h2>Name : {name}</h2>
+        <h3> Instructor : {instructor_name} </h3>
+        <h3> Email : {email} </h3>
       </div>
       <div>
         <p> Price : {price} </p>
-        <p> Feedback : {feedbackIs} </p>
         <p> Enrolled Students : {enrolled_studs} </p>
+        <h6>Current Status : {roleIn}</h6>
       </div>
-      <div>
-        <h6>
-          Role: <br /> {roleIn}
-          <br />
-        </h6>
-      </div>
+
       <div className="flex flex-col">
         <Link>
           <button
             onClick={() => window.my_modal_5.showModal()}
-            className="my-2 px-3 py-2 border rounded"
+            className="my-2 px-3 py-2 border rounded btn-outline btn-error"
           >
             Deny
           </button>
         </Link>
-        <button className="my-2 px-3 py-2 border rounded"> Approve </button>
+        <button
+          onClick={() => handleApprove(_id)}
+          className="my-2 px-3 py-2 border rounded btn-outline btn-success"
+        >
+          {" "}
+          Approve{" "}
+        </button>
       </div>
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <form method="dialog" className="modal-box">

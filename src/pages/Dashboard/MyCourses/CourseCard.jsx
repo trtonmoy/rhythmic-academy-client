@@ -24,9 +24,7 @@ const CourseCard = ({ course }) => {
         />
       </figure>
       <div>
-        <h2>
-          Name : <br /> {name}
-        </h2>
+        <h2>Name : {name}</h2>
       </div>
       <div>
         <p> Price : {price} </p>
@@ -39,9 +37,15 @@ const CourseCard = ({ course }) => {
       </div>
       <div className="flex flex-col">
         <Link to="/dashboard/feedback">
-          <button className="my-2"> Feedback </button>
+          <button className="my-2 px-3 py-2 border rounded btn-outline btn-info">
+            {" "}
+            Feedback{" "}
+          </button>
         </Link>
-        <button> Update </button>
+        <button className="my-2 px-3 py-2 border rounded btn-outline btn-secondary">
+          {" "}
+          Update{" "}
+        </button>
       </div>
     </div>
   );
