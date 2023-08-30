@@ -35,6 +35,8 @@ const SelectedClass = () => {
     });
   };
 
+
+
   return (
     <section className="w-full px-4">
       <div>
@@ -65,7 +67,7 @@ const SelectedClass = () => {
                     </div>
                   </td>
                   <td>{subject.name}</td>
-                  <td className="">{subject.price}</td>
+                  <td className=""> $ {subject.price}</td>
                   <td>
                     <button
                       onClick={() => handleDelete(subject)}
@@ -76,7 +78,7 @@ const SelectedClass = () => {
                   </td>
                   <td>
                     <Link to="/dashboard/pay">
-                      <button className="p-2 bg-lime-500 rounded-xl text-2xl">
+                      <button  className="p-2 bg-lime-500 rounded-xl text-2xl">
                         <FaAmazonPay></FaAmazonPay>
                       </button>
                     </Link>

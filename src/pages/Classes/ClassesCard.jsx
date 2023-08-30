@@ -32,7 +32,7 @@ const ClassesCard = ({ instrument }) => {
         seats,
         email: user.email,
       };
-      fetch("http://localhost:5000/admission", {
+      fetch("https://rhythmic-academy-server.vercel.app/admission", {
         method: "POST",
         headers: {
           "content-type": "application/json",

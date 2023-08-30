@@ -28,7 +28,7 @@ const ManageCourseCard = ({
 
   const handleUpdate = (id) => {
     const update = { role: roleIn, feedback: feedbackIs };
-    fetch(`http://localhost:5000/instruments/${id}`, {
+    fetch(`https://rhythmic-academy-server.vercel.app/instruments/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -44,7 +44,7 @@ const ManageCourseCard = ({
   };
 
   const handleApprove = (id) => {
-    fetch(`http://localhost:5000/instruments/${id}`, {
+    fetch(`https://rhythmic-academy-server.vercel.app/instruments/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

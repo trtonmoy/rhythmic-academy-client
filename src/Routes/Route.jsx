@@ -16,6 +16,8 @@ import MyCourses from "../pages/Dashboard/MyCourses/MyCourses";
 import Feedback from "../pages/Dashboard/Feedback/Feedback";
 import ManageCourses from "../pages/Dashboard/ManageCourses/ManageCourses";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import InstructorRoute from "./InstructorRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +36,9 @@ export const router = createBrowserRouter([
         path: "/instructors/:id",
         element: <Instructor></Instructor>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructors/${params.id}`),
+          fetch(
+            `https://rhythmic-academy-server.vercel.app/instructors/${params.id}`
+          ),
       },
       {
         path: "/classes",
@@ -76,23 +80,43 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addcourse",
-        element: <AddCourse></AddCourse>,
+        element: (
+          <InstructorRoute>
+            <AddCourse></AddCourse>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/mycourses",
-        element: <MyCourses></MyCourses>,
+        element: (
+          <InstructorRoute>
+            <MyCourses></MyCourses>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/feedback",
-        element: <Feedback></Feedback>,
+        element: (
+          <InstructorRoute>
+            <Feedback></Feedback>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/managecourses",
-        element: <ManageCourses></ManageCourses>,
+        element: (
+          <AdminRoute>
+            <ManageCourses></ManageCourses>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/manageusers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
     ],
   },

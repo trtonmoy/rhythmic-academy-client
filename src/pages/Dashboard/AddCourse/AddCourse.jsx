@@ -47,7 +47,7 @@ const AddCourse = () => {
             feedback: '',
 
           };
-          console.log(newItem);
+          // console.log(newItem);
           axiosSecure.post("/instruments", newItem).then((data) => {
             console.log("after posting new menu item", data.data);
             if (data.data.insertedId) {

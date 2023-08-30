@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const InstrumentCard = ({ item }) => {
   const { name, small_details, image } = item;
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg hover:scale-105 transition duration-300">
       <div className="relative">
         <img
           className="w-full h-64 object-cover"

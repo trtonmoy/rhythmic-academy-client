@@ -7,7 +7,7 @@ const ManageUsersCard = ({ user }) => {
 
   const handleMakeAdmin = (id) => {
     setButtonDisabled(true);
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://rhythmic-academy-server.vercel.app/users/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -28,7 +28,7 @@ const ManageUsersCard = ({ user }) => {
 
   const handleMakeInstructor = (id) => {
     setButtonDisabled(true);
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://rhythmic-academy-server.vercel.app/users/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

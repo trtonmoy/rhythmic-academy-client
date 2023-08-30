@@ -8,9 +8,9 @@ const useAdmission = () => {
   const [axiosSecure] = useAxiosSecure();
   const { refetch, data: subjects = [] } = useQuery({
     queryKey: ["admission", user?.email],
-    enabled: !loading,
+    enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure(`/admission?email=${user?.email}`);
+      const res = await axiosSecure.get(`/admission?email=${user?.email}`);
       return res.data;
     },
   });

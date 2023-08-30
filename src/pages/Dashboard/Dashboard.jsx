@@ -13,9 +13,13 @@ import {
   MdOutlineLibraryBooks,
   MdOutlineManageHistory,
 } from "react-icons/md";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Dashboard = () => {
   const [subjects] = useAdmission();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -42,57 +46,74 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li>
-              <Link to="/">
-                <BiHome></BiHome> Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/classes">
-                <CgPiano></CgPiano> Courses
-              </Link>
-            </li>
-            <li>
-              <Link to="/instructors">
-                <IoMdPeople></IoMdPeople> Our Instructors
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/selected">
-                <IoMdAlbums></IoMdAlbums> Selected Classes
-                <button className="btn ml-2">
-                  <IoSchoolOutline className="" />
-                  <div className="badge badge-secondary">
-                    +{subjects?.length || 0}
-                  </div>
-                </button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/enrolled">
-                <HiBadgeCheck></HiBadgeCheck> Enrolled Classes
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/addcourse">
-                <LuBookPlus></LuBookPlus> Add a Course
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/mycourses">
-                <MdOutlineLibraryBooks></MdOutlineLibraryBooks> My Courses
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/managecourses">
-                <MdOutlineManageHistory></MdOutlineManageHistory> Manage Courses
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard/manageusers">
-                <MdManageAccounts></MdManageAccounts> Manage Users
-              </Link>
-            </li>
+
+            {isAdmin ? (
+              <>
+                <li>
+                  <Link to="/dashboard/managecourses">
+                    <MdOutlineManageHistory></MdOutlineManageHistory> Manage
+                    Courses
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/manageusers">
+                    <MdManageAccounts></MdManageAccounts> Manage Users
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
+
+            {isInstructor ? (
+              <>
+                <li>
+                  <Link to="/dashboard/addcourse">
+                    <LuBookPlus></LuBookPlus> Add a Course
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/mycourses">
+                    <MdOutlineLibraryBooks></MdOutlineLibraryBooks> My Courses
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
+            <>
+                <li>
+                  <Link to="/">
+                    <BiHome></BiHome> Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/classes">
+                    <CgPiano></CgPiano> Courses
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/instructors">
+                    <IoMdPeople></IoMdPeople> Our Instructors
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/selected">
+                    <IoMdAlbums></IoMdAlbums> Selected Classes
+                    <button className="btn ml-2">
+                      <IoSchoolOutline className="" />
+                      <div className="badge badge-secondary">
+                        +{subjects?.length || 0}
+                      </div>
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/enrolled">
+                    <HiBadgeCheck></HiBadgeCheck> Enrolled Classes
+                  </Link>
+                </li>
+              </>
           </ul>
         </div>
       </div>
